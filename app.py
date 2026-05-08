@@ -41,13 +41,17 @@ load_parts()
 # ---------------------------------------------------------------------------
 # Database
 # ---------------------------------------------------------------------------
+def _build_db_url():
+    url = os.environ.get('DATABASE_URL', '')
+    if url.startswith('postgres://'):
+        url = url.replace('postgres://', 'postgresql://', 1)
+    if 'sslmode=' not in url:
+        url += ('&' if '?' in url else '?') + 'sslmode=require'
+    return url
+
 def get_db():
     if 'db' not in g:
-        database_url = os.environ.get('DATABASE_URL', '')
-        # Heroku/Railway give postgres:// but psycopg2 needs postgresql://
-        if database_url.startswith('postgres://'):
-            database_url = database_url.replace('postgres://', 'postgresql://', 1)
-        g.db = psycopg2.connect(database_url)
+        g.db = psycopg2.connect(_build_db_url())
     return g.db
 
 
@@ -59,11 +63,9 @@ def close_db(error):
 
 
 def init_db():
-    database_url = os.environ.get('DATABASE_URL', '')
+    database_url = _build_db_url()
     if not database_url:
         return
-    if database_url.startswith('postgres://'):
-        database_url = database_url.replace('postgres://', 'postgresql://', 1)
     try:
         conn = psycopg2.connect(database_url)
         cur = conn.cursor()
