@@ -69,44 +69,43 @@ function initCombosPage() {
 // BATTLE PAGE
 // ============================================================
 function initBattlePage() {
-  const bey1Select   = $('#bey1Select');
-  const bey2Select   = $('#bey2Select');
-  const winnerSelect = $('#winnerSelect');
-  const winTypeSelect = $('#winTypeSelect');
-  const pointsPreview = $('#pointsPreview');
-  const pointsValue   = $('#pointsValue');
+  var bey1Input    = $('#bey1Input');
+  var bey2Input    = $('#bey2Input');
+  var winnerSelect = $('#winnerSelect');
+  var winTypeSelect = $('#winTypeSelect');
+  var pointsPreview = $('#pointsPreview');
+  var pointsValue   = $('#pointsValue');
 
-  if (!bey1Select || !bey2Select || !winnerSelect) return;
-
-  const combos = window.BATTLE_COMBOS || [];
+  if (!bey1Input || !bey2Input || !winnerSelect) return;
 
   function updateWinnerOptions() {
-    const bey1Id = bey1Select.value;
-    const bey2Id = bey2Select.value;
-
-    // Clear winner
+    var n1 = bey1Input.value.trim();
+    var n2 = bey2Input.value.trim();
     winnerSelect.innerHTML = '<option value="">— Select Winner —</option>';
-
-    if (bey1Id || bey2Id) {
-      const available = combos.filter(function (c) {
-        return String(c.id) === bey1Id || String(c.id) === bey2Id;
-      });
-      available.forEach(function (c) {
-        const opt = document.createElement('option');
-        opt.value = c.id;
-        opt.textContent = c.name;
-        winnerSelect.appendChild(opt);
-      });
+    if (n1) {
+      var opt1 = document.createElement('option');
+      opt1.value = n1;
+      opt1.textContent = n1;
+      winnerSelect.appendChild(opt1);
+    }
+    if (n2 && n2 !== n1) {
+      var opt2 = document.createElement('option');
+      opt2.value = n2;
+      opt2.textContent = n2;
+      winnerSelect.appendChild(opt2);
     }
   }
 
-  bey1Select.addEventListener('change', updateWinnerOptions);
-  bey2Select.addEventListener('change', updateWinnerOptions);
+  bey1Input.addEventListener('input', updateWinnerOptions);
+  bey2Input.addEventListener('input', updateWinnerOptions);
+  // Also catch datalist selection (fires as 'change' on some browsers)
+  bey1Input.addEventListener('change', updateWinnerOptions);
+  bey2Input.addEventListener('change', updateWinnerOptions);
 
   if (winTypeSelect && pointsPreview && pointsValue) {
     winTypeSelect.addEventListener('change', function () {
-      const selected = winTypeSelect.options[winTypeSelect.selectedIndex];
-      const pts = selected ? selected.dataset.pts : null;
+      var selected = winTypeSelect.options[winTypeSelect.selectedIndex];
+      var pts = selected ? selected.dataset.pts : null;
       if (pts !== null && pts !== undefined && winTypeSelect.value) {
         pointsPreview.style.display = 'flex';
         pointsValue.textContent = pts;

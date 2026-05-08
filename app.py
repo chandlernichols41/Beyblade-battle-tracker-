@@ -336,31 +336,49 @@ def battle():
     return render_template('battle.html', combos=combos_list, recent=recent, win_points=WIN_POINTS)
 
 
+def _get_or_create_bey(cur, conn, user_id, name):
+    """Look up a beyblade by name for this user; create it if it doesn't exist."""
+    cur.execute('SELECT id FROM beyblades WHERE user_id=%s AND name=%s', (user_id, name))
+    row = cur.fetchone()
+    if row:
+        return row[0]
+    cur.execute(
+        'INSERT INTO beyblades (user_id, name, blade, ratchet, bit) VALUES (%s,%s,%s,%s,%s) RETURNING id',
+        (user_id, name, '', '', '')
+    )
+    conn.commit()
+    return cur.fetchone()[0]
+
 @app.route('/battle/record', methods=['POST'])
 @login_required
 def battle_record():
-    user_id = session['user_id']
-    bey1_id = request.form.get('bey1_id', type=int)
-    bey2_id = request.form.get('bey2_id', type=int)
-    winner_id = request.form.get('winner_id', type=int)
-    win_type = request.form.get('win_type', '').strip()
-    if not all([bey1_id, bey2_id, winner_id, win_type]):
+    user_id     = session['user_id']
+    bey1_name   = request.form.get('bey1_name', '').strip()
+    bey2_name   = request.form.get('bey2_name', '').strip()
+    winner_name = request.form.get('winner_name', '').strip()
+    win_type    = request.form.get('win_type', '').strip()
+
+    if not all([bey1_name, bey2_name, winner_name, win_type]):
         flash('All fields are required.', 'error')
         return redirect(url_for('battle'))
-    if bey1_id == bey2_id:
+    if bey1_name == bey2_name:
         flash('Bey 1 and Bey 2 must be different combos.', 'error')
         return redirect(url_for('battle'))
-    if winner_id not in (bey1_id, bey2_id):
+    if winner_name not in (bey1_name, bey2_name):
         flash('Winner must be one of the two combos.', 'error')
         return redirect(url_for('battle'))
     if win_type not in WIN_POINTS:
         flash('Invalid win type.', 'error')
         return redirect(url_for('battle'))
+
     conn = get_db()
-    cur = conn.cursor()
+    cur  = conn.cursor()
+    bey1_id   = _get_or_create_bey(cur, conn, user_id, bey1_name)
+    bey2_id   = _get_or_create_bey(cur, conn, user_id, bey2_name)
+    winner_id = bey1_id if winner_name == bey1_name else bey2_id
+
     cur.execute(
-        """INSERT INTO battles (user_id, bey1_id, bey2_id, winner_id, win_type)
-           VALUES (%s, %s, %s, %s, %s)""",
+        'INSERT INTO battles (user_id, bey1_id, bey2_id, winner_id, win_type) VALUES (%s,%s,%s,%s,%s)',
         (user_id, bey1_id, bey2_id, winner_id, win_type)
     )
     conn.commit()

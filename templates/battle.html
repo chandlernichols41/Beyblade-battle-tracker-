@@ -7,35 +7,27 @@
 
 <!-- Record Battle Form -->
 <div class="card" style="margin-bottom:20px;">
-  {% if combos|length < 2 %}
-  <div class="empty-state" style="padding:16px 0;">
-    <p>You need at least 2 combos to record a battle.<br>
-    <a href="/combos" class="link-accent">Go add some combos first!</a></p>
-  </div>
-  {% else %}
   <form action="/battle/record" method="post" id="battleForm">
+    <datalist id="combo-list">
+      {% for c in combos %}
+      <option value="{{ c.name }}">
+      {% endfor %}
+    </datalist>
+
     <div class="form-group">
       <label class="form-label">Beyblade 1</label>
-      <select name="bey1_id" id="bey1Select" class="form-input" required>
-        <option value="">— Select Combo —</option>
-        {% for c in combos %}
-        <option value="{{ c.id }}">{{ c.name }}</option>
-        {% endfor %}
-      </select>
+      <input type="text" name="bey1_name" id="bey1Input" class="form-input"
+             list="combo-list" placeholder="Select or type a combo name..." autocomplete="off" required>
     </div>
     <div class="form-group">
       <label class="form-label">Beyblade 2</label>
-      <select name="bey2_id" id="bey2Select" class="form-input" required>
-        <option value="">— Select Combo —</option>
-        {% for c in combos %}
-        <option value="{{ c.id }}">{{ c.name }}</option>
-        {% endfor %}
-      </select>
+      <input type="text" name="bey2_name" id="bey2Input" class="form-input"
+             list="combo-list" placeholder="Select or type a combo name..." autocomplete="off" required>
     </div>
     <div class="form-group">
       <label class="form-label">Winner</label>
-      <select name="winner_id" id="winnerSelect" class="form-input" required>
-        <option value="">— Select Winner —</option>
+      <select name="winner_name" id="winnerSelect" class="form-input" required>
+        <option value="">— Select Bey 1 and 2 first —</option>
       </select>
     </div>
     <div class="form-group">
@@ -53,16 +45,6 @@
     </div>
     <button type="submit" class="btn-primary btn-full" style="margin-top:12px;">Record Battle</button>
   </form>
-
-  <!-- Combo data for JS -->
-  <script>
-    window.BATTLE_COMBOS = [
-      {% for c in combos %}
-      { id: {{ c.id }}, name: {{ c.name | tojson }} }{% if not loop.last %},{% endif %}
-      {% endfor %}
-    ];
-  </script>
-  {% endif %}
 </div>
 
 <!-- Recent Battles -->
