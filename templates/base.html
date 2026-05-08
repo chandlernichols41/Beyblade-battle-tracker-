@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1a1a2e">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Beyblade X Tracker</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-title">
+      <span class="header-logo">&#9733;</span>
+      BEYBLADE X TRACKER
+    </div>
+    {% if session.username %}
+    <div class="header-user">
+      <span class="header-username">{{ session.username }}</span>
+      <form action="/logout" method="post" style="display:inline;">
+        <button type="submit" class="btn-logout">Logout</button>
+      </form>
+    </div>
+    {% endif %}
+  </header>
+
+  <!-- Flash messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-container">
+        {% for category, message in messages %}
+          <div class="flash flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <!-- Main content -->
+  <main class="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Bottom tab navigation -->
+  <nav class="bottom-nav">
+    <a href="/combos" class="nav-tab {% if request.path == '/combos' %}active{% endif %}">
+      <span class="nav-icon">&#9651;</span>
+      <span class="nav-label">Combos</span>
+    </a>
+    <a href="/battle" class="nav-tab {% if request.path == '/battle' %}active{% endif %}">
+      <span class="nav-icon">&#9889;</span>
+      <span class="nav-label">Battle</span>
+    </a>
+    <a href="/stats" class="nav-tab {% if request.path == '/stats' %}active{% endif %}">
+      <span class="nav-icon">&#9782;</span>
+      <span class="nav-label">Stats</span>
+    </a>
+    <a href="/parts" class="nav-tab {% if request.path == '/parts' %}active{% endif %}">
+      <span class="nav-icon">&#9881;</span>
+      <span class="nav-label">Parts</span>
+    </a>
+  </nav>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

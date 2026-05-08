@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="page-header">
+  <h2 class="page-title">Parts Database</h2>
+</div>
+
+<!-- Controls -->
+<div class="card" style="margin-bottom:16px;">
+  <div class="form-group" style="margin-bottom:12px;">
+    <input
+      type="text"
+      id="partsSearch"
+      class="form-input"
+      placeholder="Search parts..."
+      autocomplete="off"
+    >
+  </div>
+  <div class="radio-row">
+    <label class="radio-label">
+      <input type="radio" name="partsCat" value="all" checked> All
+    </label>
+    <label class="radio-label">
+      <input type="radio" name="partsCat" value="blades"> Blades
+    </label>
+    <label class="radio-label">
+      <input type="radio" name="partsCat" value="ratchets"> Ratchets
+    </label>
+    <label class="radio-label">
+      <input type="radio" name="partsCat" value="bits"> Bits
+    </label>
+  </div>
+</div>
+
+<!-- Parts Grid -->
+<div class="parts-grid" id="partsGrid">
+  {% for part in parts_db.get('blades', []) %}
+  <div class="part-card" data-category="blades" data-name="{{ part.name | lower }}" onclick="selectPart(this)">
+    {% if part.image %}
+    <img src="/{{ part.image }}" alt="{{ part.name }}" class="part-img" loading="lazy"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="part-img-placeholder" style="display:none;">&#9651;</div>
+    {% else %}
+    <div class="part-img-placeholder">&#9651;</div>
+    {% endif %}
+    <div class="part-name">{{ part.name }}</div>
+    <span class="part-badge badge-blade">Blade</span>
+  </div>
+  {% endfor %}
+
+  {% for part in parts_db.get('ratchets', []) %}
+  <div class="part-card" data-category="ratchets" data-name="{{ part.name | lower }}" onclick="selectPart(this)">
+    {% if part.image %}
+    <img src="/{{ part.image }}" alt="{{ part.name }}" class="part-img" loading="lazy"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="part-img-placeholder" style="display:none;">&#9711;</div>
+    {% else %}
+    <div class="part-img-placeholder">&#9711;</div>
+    {% endif %}
+    <div class="part-name">{{ part.name }}</div>
+    <span class="part-badge badge-ratchet">Ratchet</span>
+  </div>
+  {% endfor %}
+
+  {% for part in parts_db.get('bits', []) %}
+  <div class="part-card" data-category="bits" data-name="{{ part.name | lower }}" onclick="selectPart(this)">
+    {% if part.image %}
+    <img src="/{{ part.image }}" alt="{{ part.name }}" class="part-img" loading="lazy"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="part-img-placeholder" style="display:none;">&#9670;</div>
+    {% else %}
+    <div class="part-img-placeholder">&#9670;</div>
+    {% endif %}
+    <div class="part-name">{{ part.name }}</div>
+    <span class="part-badge badge-bit">Bit</span>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Part Modal -->
+<div id="partModal" class="modal-overlay" style="display:none;" onclick="closeModal(event)">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="document.getElementById('partModal').style.display='none'">&#10005;</button>
+    <img id="modalImg" src="" alt="" class="modal-img" onerror="this.style.display='none'">
+    <div id="modalPlaceholder" class="modal-placeholder" style="display:none;"></div>
+    <div id="modalName" class="modal-name"></div>
+    <div id="modalBadge"></div>
+  </div>
+</div>
+
+{% endblock %}

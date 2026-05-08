@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="page-header">
+  <h2 class="page-title">My Combos</h2>
+  <button class="btn-primary btn-sm" id="toggleAddForm">+ Add Combo</button>
+</div>
+
+<!-- Add Combo Form (slide-in panel) -->
+<div id="addComboPanel" class="slide-panel" style="display:none;">
+  <div class="card" style="margin-bottom:16px;">
+    <h3 class="card-title">New Combo</h3>
+    <form action="/combos/add" method="post">
+      <div class="form-group">
+        <label class="form-label">Combo Name</label>
+        <input
+          type="text"
+          name="name"
+          class="form-input"
+          placeholder="e.g. My Dran Sword build"
+          required
+        >
+      </div>
+      <div class="form-group">
+        <label class="form-label">Blade</label>
+        <input
+          type="text"
+          name="blade"
+          id="bladeInput"
+          class="form-input"
+          list="blade-list"
+          placeholder="Search blades..."
+          autocomplete="off"
+        >
+        <datalist id="blade-list">
+          {% for b in blade_names %}
+          <option value="{{ b }}">
+          {% endfor %}
+        </datalist>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Ratchet</label>
+        <input
+          type="text"
+          name="ratchet"
+          id="ratchetInput"
+          class="form-input"
+          list="ratchet-list"
+          placeholder="Search ratchets..."
+          autocomplete="off"
+        >
+        <datalist id="ratchet-list">
+          {% for r in ratchet_names %}
+          <option value="{{ r }}">
+          {% endfor %}
+        </datalist>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Bit</label>
+        <input
+          type="text"
+          name="bit"
+          id="bitInput"
+          class="form-input"
+          list="bit-list"
+          placeholder="Search bits..."
+          autocomplete="off"
+        >
+        <datalist id="bit-list">
+          {% for b in bit_names %}
+          <option value="{{ b }}">
+          {% endfor %}
+        </datalist>
+      </div>
+      <div class="form-row">
+        <button type="submit" class="btn-primary">Save Combo</button>
+        <button type="button" class="btn-ghost" id="cancelAddForm">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Combos Table -->
+{% if combos %}
+<div class="table-wrapper">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Blade</th>
+        <th>Ratchet</th>
+        <th>Bit</th>
+        <th class="text-center">W</th>
+        <th class="text-center">L</th>
+        <th class="text-center">Battles</th>
+        <th class="text-center">Win%</th>
+        <th class="text-center">Pts</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in combos %}
+      <tr class="combo-row" data-combo="{{ c.name }}" style="cursor:pointer;">
+        <td class="text-accent font-bold">{{ c.name }}</td>
+        <td>{{ c.blade or '—' }}</td>
+        <td>{{ c.ratchet or '—' }}</td>
+        <td>{{ c.bit or '—' }}</td>
+        <td class="text-center text-win">{{ c.wins }}</td>
+        <td class="text-center text-loss">{{ c.losses }}</td>
+        <td class="text-center">{{ c.battles }}</td>
+        <td class="text-center {% if c.win_pct >= 60 %}text-win{% elif c.win_pct <= 40 %}text-loss{% endif %}">
+          {{ c.win_pct }}%
+        </td>
+        <td class="text-center text-gold">{{ c.pts }}</td>
+        <td onclick="event.stopPropagation();">
+          <form action="/combos/{{ c.id }}/delete" method="post"
+                onsubmit="return confirm('Delete {{ c.name }}? This also deletes all its battles.');">
+            <button type="submit" class="btn-delete">&#10005;</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="empty-state">
+  <div class="empty-icon">&#9651;</div>
+  <p>No combos yet. Add your first combo above!</p>
+</div>
+{% endif %}
+
+<script>
+  // Expose part names for JS use
+  window.BLADE_NAMES = {{ blade_names | tojson }};
+  window.RATCHET_NAMES = {{ ratchet_names | tojson }};
+  window.BIT_NAMES = {{ bit_names | tojson }};
+</script>
+{% endblock %}

@@ -1,0 +1,380 @@
+{
+  "blades": [
+    {
+      "name": "Dran Sword",
+      "image": "images/blades/dran_sword.jpg"
+    },
+    {
+      "name": "Hells Scythe",
+      "image": "images/blades/hells_scythe.jpg"
+    },
+    {
+      "name": "Wizard Arrow",
+      "image": "images/blades/wizard_arrow.jpg"
+    },
+    {
+      "name": "Knight Shield",
+      "image": "images/blades/knight_shield.jpg"
+    },
+    {
+      "name": "Knight Lance",
+      "image": "images/blades/knight_lance.jpg"
+    },
+    {
+      "name": "Shark Edge",
+      "image": "images/blades/shark_edge.jpg"
+    },
+    {
+      "name": "Leon Claw",
+      "image": "images/blades/leon_claw.jpg"
+    },
+    {
+      "name": "Viper Tail",
+      "image": "images/blades/viper_tail.jpg"
+    },
+    {
+      "name": "Rhino Horn",
+      "image": "images/blades/rhino_horn.jpg"
+    },
+    {
+      "name": "Dran Dagger",
+      "image": "images/blades/dran_dagger.jpg"
+    },
+    {
+      "name": "Hells Chain",
+      "image": "images/blades/hells_chain.jpg"
+    },
+    {
+      "name": "Phoenix Feather",
+      "image": "images/blades/phoenix_feather.jpg"
+    },
+    {
+      "name": "Phoenix Wing",
+      "image": "images/blades/phoenix_wing.jpg"
+    },
+    {
+      "name": "Wyvern Gale",
+      "image": "images/blades/wyvern_gale.jpg"
+    },
+    {
+      "name": "Dranzer Spiral",
+      "image": "images/blades/dranzer_spiral.jpg"
+    },
+    {
+      "name": "Cobalt Drake",
+      "image": "images/blades/cobalt_drake.jpg"
+    },
+    {
+      "name": "Unicorn Sting",
+      "image": "images/blades/unicorn_sting.jpg"
+    },
+    {
+      "name": "Sphinx Cowl",
+      "image": "images/blades/sphinx_cowl.jpg"
+    },
+    {
+      "name": "Dran Buster",
+      "image": "images/blades/dran_buster.jpg"
+    },
+    {
+      "name": "Hells Hammer",
+      "image": "images/blades/hells_hammer.jpg"
+    },
+    {
+      "name": "Wizard Rod",
+      "image": "images/blades/wizard_rod.jpg"
+    },
+    {
+      "name": "Tyranno Beat",
+      "image": "images/blades/tyranno_beat.jpg"
+    },
+    {
+      "name": "Driger S",
+      "image": "images/blades/driger_s.jpg"
+    },
+    {
+      "name": "Shinobi Shadow",
+      "image": "images/blades/shinobi_shadow.jpg"
+    },
+    {
+      "name": "Weiss Tiger",
+      "image": "images/blades/weiss_tiger.jpg"
+    },
+    {
+      "name": "Cobalt Dragoon",
+      "image": "images/blades/cobalt_dragoon.jpg"
+    },
+    {
+      "name": "Black Shell",
+      "image": "images/blades/black_shell.jpg"
+    },
+    {
+      "name": "Phoenix Rudder",
+      "image": "images/blades/phoenix_rudder.jpg"
+    },
+    {
+      "name": "Leon Crest",
+      "image": "images/blades/leon_crest.jpg"
+    },
+    {
+      "name": "Aero Pegasus",
+      "image": "images/blades/aero_pegasus.jpg"
+    },
+    {
+      "name": "Lightning L-Drago",
+      "image": "images/blades/lightning_l_drago.jpg"
+    },
+    {
+      "name": "Shinobi Knife",
+      "image": "images/blades/shinobi_knife.jpg"
+    },
+    {
+      "name": "Bite Croc",
+      "image": null
+    },
+    {
+      "name": "Meteor Dragoon",
+      "image": "images/blades/meteor_dragoon.jpg"
+    },
+    {
+      "name": "Samurai Saber",
+      "image": "images/blades/samurai_saber.jpg"
+    },
+    {
+      "name": "hover wyvern",
+      "image": null
+    }
+  ],
+  "ratchets": [
+    {
+      "name": "0-80",
+      "image": "images/ratchets/0_80.jpg"
+    },
+    {
+      "name": "1-60",
+      "image": "images/ratchets/1_60.jpg"
+    },
+    {
+      "name": "1-80",
+      "image": "images/ratchets/1_80.jpg"
+    },
+    {
+      "name": "2-60",
+      "image": "images/ratchets/2_60.jpg"
+    },
+    {
+      "name": "2-70",
+      "image": "images/ratchets/2_70.jpg"
+    },
+    {
+      "name": "2-80",
+      "image": "images/ratchets/2_80.jpg"
+    },
+    {
+      "name": "3-60",
+      "image": "images/ratchets/3_60.jpg"
+    },
+    {
+      "name": "3-70",
+      "image": "images/ratchets/3_70.jpg"
+    },
+    {
+      "name": "3-80",
+      "image": "images/ratchets/3_80.jpg"
+    },
+    {
+      "name": "3-85",
+      "image": "images/ratchets/3_85.jpg"
+    },
+    {
+      "name": "4-55",
+      "image": "images/ratchets/4_55.jpg"
+    },
+    {
+      "name": "4-60",
+      "image": "images/ratchets/4_60.jpg"
+    },
+    {
+      "name": "4-70",
+      "image": "images/ratchets/4_70.jpg"
+    },
+    {
+      "name": "4-80",
+      "image": "images/ratchets/4_80.jpg"
+    },
+    {
+      "name": "5-60",
+      "image": "images/ratchets/5_60.jpg"
+    },
+    {
+      "name": "5-70",
+      "image": "images/ratchets/5_70.jpg"
+    },
+    {
+      "name": "5-80",
+      "image": "images/ratchets/5_80.jpg"
+    },
+    {
+      "name": "6-60",
+      "image": "images/ratchets/6_60.jpg"
+    },
+    {
+      "name": "6-80",
+      "image": "images/ratchets/6_80.jpg"
+    },
+    {
+      "name": "7-60",
+      "image": "images/ratchets/7_60.jpg"
+    },
+    {
+      "name": "7-70",
+      "image": "images/ratchets/7_70.jpg"
+    },
+    {
+      "name": "7-80",
+      "image": "images/ratchets/7_80.jpg"
+    },
+    {
+      "name": "9-60",
+      "image": "images/ratchets/9_60.jpg"
+    },
+    {
+      "name": "9-70",
+      "image": "images/ratchets/9_70.jpg"
+    },
+    {
+      "name": "9-80",
+      "image": "images/ratchets/9_80.jpg"
+    }
+  ],
+  "bits": [
+    {
+      "name": "Flat",
+      "image": "images/bits/flat.jpg"
+    },
+    {
+      "name": "Taper",
+      "image": "images/bits/taper.jpg"
+    },
+    {
+      "name": "Ball",
+      "image": "images/bits/ball.jpg"
+    },
+    {
+      "name": "Needle",
+      "image": "images/bits/needle.jpg"
+    },
+    {
+      "name": "High Needle",
+      "image": "images/bits/high_needle.jpg"
+    },
+    {
+      "name": "Low Flat",
+      "image": "images/bits/low_flat.jpg"
+    },
+    {
+      "name": "Point",
+      "image": "images/bits/point.jpg"
+    },
+    {
+      "name": "Orb",
+      "image": "images/bits/orb.jpg"
+    },
+    {
+      "name": "Rush",
+      "image": "images/bits/rush.jpg"
+    },
+    {
+      "name": "High Taper",
+      "image": "images/bits/high_taper.jpg"
+    },
+    {
+      "name": "Spike",
+      "image": "images/bits/spike.jpg"
+    },
+    {
+      "name": "Gear Flat",
+      "image": "images/bits/gear_flat.jpg"
+    },
+    {
+      "name": "Gear Ball",
+      "image": "images/bits/gear_ball.jpg"
+    },
+    {
+      "name": "Gear Point",
+      "image": "images/bits/gear_point.jpg"
+    },
+    {
+      "name": "Gear Needle",
+      "image": "images/bits/gear_needle.jpg"
+    },
+    {
+      "name": "Accel",
+      "image": "images/bits/accel.jpg"
+    },
+    {
+      "name": "Disc Ball",
+      "image": "images/bits/disc_ball.jpg"
+    },
+    {
+      "name": "Hexa",
+      "image": "images/bits/hexa.jpg"
+    },
+    {
+      "name": "Quake",
+      "image": "images/bits/quake.jpg"
+    },
+    {
+      "name": "Metal Needle",
+      "image": "images/bits/metal_needle.jpg"
+    },
+    {
+      "name": "Unite",
+      "image": "images/bits/unite.jpg"
+    },
+    {
+      "name": "Cyclone",
+      "image": "images/bits/cyclone.jpg"
+    },
+    {
+      "name": "Dot",
+      "image": "images/bits/dot.jpg"
+    },
+    {
+      "name": "Glide",
+      "image": "images/bits/glide.jpg"
+    },
+    {
+      "name": "Elevate",
+      "image": "images/bits/elevate.jpg"
+    },
+    {
+      "name": "Free Ball",
+      "image": "images/bits/free_ball.jpg"
+    },
+    {
+      "name": "Bound Spike",
+      "image": "images/bits/bound_spike.jpg"
+    },
+    {
+      "name": "Rubber Accel",
+      "image": "images/bits/rubber_accel.jpg"
+    },
+    {
+      "name": "Level",
+      "image": "images/bits/level.jpg"
+    },
+    {
+      "name": "Trans Point",
+      "image": "images/bits/trans_point.jpg"
+    },
+    {
+      "name": "Under Needle",
+      "image": "images/bits/under_needle.jpg"
+    },
+    {
+      "name": "Low Rush",
+      "image": "images/bits/low_rush.jpg"
+    }
+  ]
+}

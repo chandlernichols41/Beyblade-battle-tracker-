@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1a1a2e">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Register — Beyblade X Tracker</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="auth-body">
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-logo">&#9733;</div>
+      <h1 class="auth-title">BEYBLADE X TRACKER</h1>
+      <p class="auth-subtitle">Create Account</p>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-container" style="margin-bottom:16px;">
+            {% for category, message in messages %}
+              <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <form action="/register" method="post" class="auth-form">
+        <div class="form-group">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-input"
+            placeholder="Choose a username"
+            autocomplete="username"
+            autocapitalize="none"
+            required
+          >
+        </div>
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-input"
+            placeholder="At least 6 characters"
+            autocomplete="new-password"
+            required
+          >
+        </div>
+        <div class="form-group">
+          <label for="confirm_password" class="form-label">Confirm Password</label>
+          <input
+            type="password"
+            id="confirm_password"
+            name="confirm_password"
+            class="form-input"
+            placeholder="Repeat your password"
+            autocomplete="new-password"
+            required
+          >
+        </div>
+        <button type="submit" class="btn-primary btn-full">Create Account</button>
+      </form>
+
+      <div class="auth-link">
+        Already have an account? <a href="/login" class="link-accent">Log In</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="page-header">
+  <h2 class="page-title">Stats</h2>
+</div>
+
+{% if not combo_names %}
+<div class="empty-state">
+  <div class="empty-icon">&#9782;</div>
+  <p>No combos yet. <a href="/combos" class="link-accent">Add some combos</a> first!</p>
+</div>
+{% else %}
+
+<!-- Pass data to JS -->
+<script>
+  window.BLADE_NAMES = {{ blade_names | tojson }};
+  window.RATCHET_NAMES = {{ ratchet_names | tojson }};
+  window.BIT_NAMES = {{ bit_names | tojson }};
+  window.SELECTED_COMBO = {{ selected_combo | tojson }};
+</script>
+
+<!-- Combo Selector -->
+<div class="card" style="margin-bottom:16px;">
+  <div class="form-row" style="align-items:flex-end;">
+    <div class="form-group" style="flex:1; margin-bottom:0;">
+      <label class="form-label">Select Combo</label>
+      <select id="comboSelect" class="form-input">
+        <option value="">— Choose a combo —</option>
+        {% for name in combo_names %}
+        <option value="{{ name }}" {% if name == selected_combo %}selected{% endif %}>{{ name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button class="btn-primary" id="showStatsBtn" style="margin-left:10px; white-space:nowrap;">Show Stats</button>
+  </div>
+</div>
+
+<!-- Part Filter Row -->
+<div class="card" id="partFilterCard" style="margin-bottom:16px; display:none;">
+  <div class="filter-label">Filter — vs opponent with:</div>
+  <div class="radio-row">
+    <label class="radio-label">
+      <input type="radio" name="partType" value="any" checked> Any
+    </label>
+    <label class="radio-label">
+      <input type="radio" name="partType" value="blade"> Blade
+    </label>
+    <label class="radio-label">
+      <input type="radio" name="partType" value="ratchet"> Ratchet
+    </label>
+    <label class="radio-label">
+      <input type="radio" name="partType" value="bit"> Bit
+    </label>
+  </div>
+  <div id="partNameGroup" style="display:none; margin-top:10px;">
+    <select id="partNameSelect" class="form-input">
+      <option value="">— Select part —</option>
+    </select>
+  </div>
+</div>
+
+<!-- Stats Display Area -->
+<div id="stats-area">
+  <!-- Populated by JS -->
+</div>
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="page-header">
+  <h2 class="page-title">Record Battle</h2>
+</div>
+
+<!-- Record Battle Form -->
+<div class="card" style="margin-bottom:20px;">
+  {% if combos|length < 2 %}
+  <div class="empty-state" style="padding:16px 0;">
+    <p>You need at least 2 combos to record a battle.<br>
+    <a href="/combos" class="link-accent">Go add some combos first!</a></p>
+  </div>
+  {% else %}
+  <form action="/battle/record" method="post" id="battleForm">
+    <div class="form-group">
+      <label class="form-label">Beyblade 1</label>
+      <select name="bey1_id" id="bey1Select" class="form-input" required>
+        <option value="">— Select Combo —</option>
+        {% for c in combos %}
+        <option value="{{ c.id }}">{{ c.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Beyblade 2</label>
+      <select name="bey2_id" id="bey2Select" class="form-input" required>
+        <option value="">— Select Combo —</option>
+        {% for c in combos %}
+        <option value="{{ c.id }}">{{ c.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Winner</label>
+      <select name="winner_id" id="winnerSelect" class="form-input" required>
+        <option value="">— Select Winner —</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Win Type</label>
+      <select name="win_type" id="winTypeSelect" class="form-input" required>
+        <option value="">— Select Win Type —</option>
+        {% for wt, pts in win_points.items() %}
+        <option value="{{ wt }}" data-pts="{{ pts }}">{{ wt }} ({{ pts }} pt{{ 's' if pts != 1 else '' }})</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="points-preview" id="pointsPreview" style="display:none;">
+      <span class="pts-label">Points awarded:</span>
+      <span class="pts-value" id="pointsValue">0</span>
+    </div>
+    <button type="submit" class="btn-primary btn-full" style="margin-top:12px;">Record Battle</button>
+  </form>
+
+  <!-- Combo data for JS -->
+  <script>
+    window.BATTLE_COMBOS = [
+      {% for c in combos %}
+      { id: {{ c.id }}, name: {{ c.name | tojson }} }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ];
+  </script>
+  {% endif %}
+</div>
+
+<!-- Recent Battles -->
+<div class="page-header">
+  <h2 class="page-title">Recent Battles</h2>
+</div>
+
+{% if recent %}
+<div class="table-wrapper">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Bey 1</th>
+        <th>Bey 2</th>
+        <th>Winner</th>
+        <th>Win Type</th>
+        <th class="text-center">Pts</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for b in recent %}
+      <tr>
+        <td class="text-muted text-sm">{{ b.date }}</td>
+        <td>{{ b.bey1 }}</td>
+        <td>{{ b.bey2 }}</td>
+        <td class="text-win font-bold">{{ b.winner }}</td>
+        <td class="text-sm">{{ b.win_type }}</td>
+        <td class="text-center text-gold">{{ b.pts }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="empty-state">
+  <div class="empty-icon">&#9889;</div>
+  <p>No battles recorded yet. Record your first battle above!</p>
+</div>
+{% endif %}
+
+{% endblock %}
