@@ -724,9 +724,10 @@ body {
 .part-img {
   width: 80px;
   height: 80px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 8px;
   background: #0f3460;
+  padding: 4px;
 }
 
 .part-img-placeholder {
@@ -826,9 +827,10 @@ body {
 .modal-img {
   width: 160px;
   height: 160px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 12px;
   background: #0f3460;
+  padding: 8px;
 }
 
 .modal-placeholder {
