@@ -37,12 +37,23 @@
     {% endif %}
   {% endwith %}
 
+  <!-- Top tab navigation -->
+  {% if session.username %}
+  <nav class="top-nav">
+    <a href="/combos" class="nav-tab {% if request.path == '/combos' %}active{% endif %}">My Combos</a>
+    <a href="/battle" class="nav-tab {% if request.path == '/battle' %}active{% endif %}">Record Battle</a>
+    <a href="/stats"  class="nav-tab {% if request.path == '/stats'  %}active{% endif %}">Stats</a>
+    <a href="/parts"  class="nav-tab {% if request.path == '/parts'  %}active{% endif %}">Parts DB</a>
+  </nav>
+  {% endif %}
+
   <!-- Main content -->
   <main class="main-content">
     {% block content %}{% endblock %}
   </main>
 
-  <!-- Bottom tab navigation -->
+  <!-- Bottom tab navigation (mobile) -->
+  {% if session.username %}
   <nav class="bottom-nav">
     <a href="/combos" class="nav-tab {% if request.path == '/combos' %}active{% endif %}">
       <span class="nav-icon">&#9651;</span>
@@ -61,6 +72,7 @@
       <span class="nav-label">Parts</span>
     </a>
   </nav>
+  {% endif %}
 
   <script src="/static/js/app.js"></script>
 </body>

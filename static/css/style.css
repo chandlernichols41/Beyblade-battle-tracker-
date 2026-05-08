@@ -164,6 +164,48 @@ body {
 }
 
 /* ============================================================
+   Top Navigation (desktop-first tabs)
+   ============================================================ */
+.top-nav {
+  background: #16213e;
+  display: flex;
+  border-bottom: 2px solid #0f3460;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.top-nav .nav-tab {
+  padding: 12px 22px;
+  color: #8888aa;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+  flex-direction: row;
+}
+
+.top-nav .nav-tab:hover {
+  color: #e0e0e0;
+}
+
+.top-nav .nav-tab.active {
+  color: #e94560;
+  border-bottom-color: #e94560;
+}
+
+/* Hide bottom nav on desktop, show on mobile */
+@media (min-width: 600px) {
+  .bottom-nav { display: none; }
+}
+
+@media (max-width: 599px) {
+  .top-nav { display: none; }
+}
+
+/* ============================================================
    Main Content
    ============================================================ */
 .main-content {
